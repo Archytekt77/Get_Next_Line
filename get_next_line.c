@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:34:34 by lmaria            #+#    #+#             */
-/*   Updated: 2025/01/13 16:45:58 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:34:13 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ char	*update_stash(char *stash)
 	if (stash[i] == '\n')
 		i++;
 	if (!stash[i])
-		return (free(stash), NULL);
+		return (free_and_null(stash, NULL));
 	new_stash = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
 	if (!new_stash)
-		return (free(stash), NULL);
+		return (free_and_null(stash, NULL));
 	j = 0;
 	while (stash[i])
 		new_stash[j++] = stash[i++];
@@ -77,7 +77,7 @@ char	*add_buffer_to_stash(char *stash, char *read_buffer)
 	}
 	temp = ft_strjoin(stash, read_buffer);
 	if (!temp)
-		return (free(stash), NULL);
+		return (free_and_null(stash, NULL));
 	free(stash);
 	return (temp);
 }
@@ -86,23 +86,23 @@ char	*read_from_file(char *stash, int fd, char *read_buffer, int bytes_read)
 {
 	read_buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!read_buffer)
-		return (free(stash), NULL);
+		return (free_and_null(stash, NULL));
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (free(read_buffer), free(stash), NULL);
+			return (free_and_null(read_buffer, stash));
 		if (bytes_read == 0)
 		{
 			if (!stash)
-				return (free(read_buffer), free(stash), NULL);
+				return (free_and_null(read_buffer, stash));
 			break ;
 		}
 		read_buffer[bytes_read] = '\0';
 		stash = add_buffer_to_stash(stash, read_buffer);
 		if (!stash)
-			return (free(read_buffer), NULL);
+			return (free_and_null(read_buffer, NULL));
 		if (ft_strchr(stash, '\n'))
 			break ;
 	}

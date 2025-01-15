@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:36:24 by lmaria            #+#    #+#             */
-/*   Updated: 2025/01/13 15:56:00 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:30:13 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
+char	*free_and_null(char *s1, char *s2);
 
 #endif

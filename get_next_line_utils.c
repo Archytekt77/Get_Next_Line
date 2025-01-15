@@ -6,7 +6,7 @@
 /*   By: lmaria <lmaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 15:33:00 by lmaria            #+#    #+#             */
-/*   Updated: 2025/01/13 15:15:51 by lmaria           ###   ########.fr       */
+/*   Updated: 2025/01/15 14:29:53 by lmaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_str[i++] = *s2++;
 	new_str[i] = '\0';
 	return (new_str);
+}
+
+char	*free_and_null(char *s1, char *s2)
+{
+	free(s1);
+	if (s2)
+		free(s2);
+	return (NULL);
 }
